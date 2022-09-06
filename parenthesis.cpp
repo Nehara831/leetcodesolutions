@@ -9,7 +9,7 @@ using namespace std;
 //bool isValid(string s)
 int main()
 
-{   string s="{}([])";
+{   string s="({[]}){}[]";           
     map<char, int> parenthesis;
     parenthesis['(']= 1; 
     parenthesis['{']= 2; 
@@ -44,6 +44,12 @@ int main()
         {
             s[j]='*';
             index[j]=0;
+            ele_1=index[j-1];
+            ele_2=index[j+1];
+
+
+
+
             if (ele_2==index[j+1+2*n]){
                 s[j+1+2*n]='*';
                 index[j+1+2*n]=0;
@@ -73,6 +79,7 @@ int main()
                 
                 j=j+1+2*n;
             }
+            */
         }
         
         else{
