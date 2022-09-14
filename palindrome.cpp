@@ -153,12 +153,16 @@ if (palindrome.length()>maximum_length.length()){
 palindrome="";   
             }
         }
-        return(maximum_length);
+        if (maximum_length.length()==s.length()){
+        return(maximum_length);}
+        else{
+            return "";
+        }
         }
         
         
         
     
 int main(){
-    cout<<longestPalindrome("tattarrattat");
+    cout<<longestPalindrome("ccccccccccccccccc");
 }
