@@ -14,11 +14,10 @@ vector<int> twoSum(vector<int>& nums, int target){
     while(flag)
     {   check=target-nums[i];
         if(nums_check.find(check)!= nums_check.end())
-        {
-        result.push_back(i);
-        int it=nums_check[check];
-        result.push_back(it);
-        flag=false;
+        {   result.push_back(i);
+            int it=nums_check[check];
+            result.push_back(it);
+            flag=false;
         }
         else
         {
