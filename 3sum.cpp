@@ -1,70 +1,89 @@
 #include <iostream>
 #include <vector>
-#include<string.h>
+#include <string.h>
 #include <bits/stdc++.h>
-using namespace std; int target;
-vector<vector<int>> threeSum(vector<int>& nums) 
-    {   vector<vector<int>> final_result;
-        vector<int> check_result;
-        //vector<int> check_result1;
-        for(int j=0;j<nums.size();j++)
-        {   int target=0-nums[j];
-            map<int, int> nums_check;
-            vector<int> result;
-            int check;
-            int i=0;
-            check=target-nums[i];
-            bool flag=true;
-            bool add=false;
-            while(flag)
-            {   check=target-nums[i];
-                if((i!=j)&&(i!=nums_check[check])&&(j!=nums_check[check]))
-                {
-                if(nums_check.find(check)!= nums_check.end())
-                {   if (!(( find(check_result.begin(), check_result.end(), nums[i]) != check_result.end() )&& ( find(check_result.begin(), check_result.end(), nums[j]) != check_result.end() )&&( find(check_result.begin(), check_result.end(),check) != check_result.end() )))
-                    {
-                        result.push_back(nums[i]);
-                        check_result.push_back(nums[i]);
-                        result.push_back(nums[j]);
-                        check_result.push_back(nums[j]);
-                        result.push_back(check);
-                        check_result.push_back(check);
-                        add = true;
-
+#include <math.h>
+using namespace std;
+int target;
+vector<vector<int>> threeSum(vector<int> &nums)
+{
+    sort(nums.begin(), nums.end());
+    vector<vector<int>> result;
+    vector<int> check_res;
+    if(nums.size()==3 && nums[0] +nums[1] + nums[2]==0)
+    {vector<int> res;
+       result.push_back(res);
+        return result; 
+    }
+    if ((nums[0] == 0) && (nums[1] == 0) && (nums[2] == 0))
+    {
+        vector<int> res;
+        res.push_back(nums[0]);
+        res.push_back(nums[1]);
+        res.push_back(nums[2]);
+        result.push_back(res);
+        return result;
+    }
+    for (int i = 0; i < nums.size() - 1; i++)
+    {
+        
+        bool flag = true;
+        if (nums[i- 1] == nums[i]&& i>0)
+        { continue;
+        }
+        else{
+            int k = nums.size() - 1;
+            int j = i + 1;
+        
+            while (flag)
+            {   vector<int> res;
+                if (nums[i] + nums[j] + nums[k] == 0)
+                { 
+                    if ((i != j) && (i != k) && (j != k))
+                    {                      
+                        res.push_back(nums[i]);                       
+                        res.push_back(nums[j]);                     
+                        res.push_back(nums[k]);                       
                     }
-                    flag=false;
+                }
+                if (nums[i] + nums[j] + nums[k]< 0)
+                {   j++;
+                   
                 }
                 else
+                {   
+                     k--;
+
+                }
+                if ((j>=k) )
                 {
-                    nums_check[nums[i]]=i;
+                    flag = false;
+                }
+                if (res.size() == 3)
+                {   
+                        while(nums[k]==nums[k-1]){
+                        k--;
+               }
+                  result.push_back(res);  
+                    
                 }
             }
-
-               i++;
-               if(i>= nums.size()){
-                   flag=false;
-               }
-            }
-            if(add){
-                final_result.push_back(result); 
-            }
-  
-
         }
-    return final_result;
     }
-int main(){
-vector<int>nums   ={-1,0,1,2,-1,-4};
-vector<vector<int>> num=threeSum(nums);
-for(int i=0;i<size(num);i++){
-    for(int j=0;j<3;j++){
-        cout<<(num[i])[j];
+    return result;
+}
+int main()
+{
+    vector<int> nums = {-2,-2,0,2,2};
+    vector<vector<int>> num = threeSum(nums);
+    for (int i = 0; i < num.size(); i++)
+    {
+        vector<int> num1 = num[i];
+        for (int j = 0; j < 3; j++)
+        {
 
+            cout << num1[j];
+        }
+        cout << endl;
     }
- cout<<endl;   
 }
-/*if(!((find(nums.begin(), nums.end(), -5) != nums.end())&&(find(nums.begin(), nums.end(), -2) != nums.end())&&(find(nums.begin(), nums.end(),-4) != nums.end()))){
-    cout<<"found";
-}*/
-}
-
