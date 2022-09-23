@@ -78,6 +78,12 @@ void print(ListNode* head)
     ListNode* third=new ListNode();
     ListNode* last=new ListNode();
     ListNode* fourth=new ListNode();
+    ListNode* list2=new ListNode();
+    ListNode* fir=new ListNode();
+    ListNode* seco=new ListNode();
+    ListNode* thi=new ListNode();
+    ListNode* las=new ListNode();
+    ListNode* fourt=new ListNode();
 
     list1->val=1;
     list1->next=first;
@@ -90,14 +96,7 @@ void print(ListNode* head)
     fourth->val=5;
     fourth->next=last;
     last->val=6;
-    last->next=NULL;
-    ListNode* list2=new ListNode();
-    ListNode* fir=new ListNode();
-    ListNode* seco=new ListNode();
-    ListNode* thi=new ListNode();
-    ListNode* las=new ListNode();
-    ListNode* fourt=new ListNode();
-
+    last->next=list2;
     list2->val=1;
     list2->next=fir;
     fir->val=2;
@@ -111,11 +110,12 @@ void print(ListNode* head)
     las->val=7;
     las->next=NULL;
     
-    ListNode *linkedList1=mergeTwoLists( list1, list2);
-    print(linkedList1);
-    // linkedList1=new ListNode(1,new ListNode(2, new ListNode(5)));
-    // ListNode *linkedList2;
-    // linkedList2=new ListNode(1,new ListNode(3,new ListNode(4)));
+    // ListNode *linkedList1=mergeTwoLists( list1, list2);
+    // print(linkedList1);
+    ListNode *linkedList1;
+    linkedList1=new ListNode(1,new ListNode(2, new ListNode(5)));
+    ListNode *linkedList2;
+    linkedList2=new ListNode(1,new ListNode(3,new ListNode(4)));
 
     
 
