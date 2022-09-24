@@ -9,32 +9,67 @@ class ListNode{
     int val;
     ListNode* next;
 };
-ListNode* isPalindrome(ListNode* head)
-{  ListNode* check=head;
-    ListNode* checkNext=head;
-    int count=1;
+ListNode* reverse(ListNode* head) {
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        ListNode* temp=head->next;
+        ListNode* pre;
+        ListNode* link=temp->next;        
+        ListNode* new1=head;
+        new1->next=NULL;
+        while(temp!=NULL){
+            pre=temp;
+            link=pre->next;
+            pre->next=NULL;
+            pre->next=new1;
+            new1=pre;
+            temp=link;       
+        }
+        return pre;
+    }
+void isPalindrome(ListNode* head)
+{  
+    ListNode* temp=new ListNode();
+    temp=head;    
+    ListNode* check=temp;
+    ListNode* checkNext=temp;
+    
     ListNode* result=check;
     while(checkNext->next!=NULL)
     {   
-          checkNext=checkNext->next->next;
-            check=check->next;
+        checkNext=checkNext->next->next;
+        if(checkNext ==NULL){
+            break;
+        }
+        check=check->next;
+        
        
     }
-    if(count%2==0)
-    {
-        //check=check->next;
-        check->next=NULL;
-        
+    ListNode* reversedResult=reverse(check);
+
+
+    
+    
+    while(result!=NULL){
+        if(result->val==reversedResult->val){
+            result=result->next;
+            reversedResult=reversedResult->next;
+            
+        }
+        else{
+            break;
+        }
+    }
+    if(result==NULL){
+        cout<<"Palindrome Number";
     }
     else{
-        check->next=NULL;
+        cout<<"Not a Palindrome Number";
     }
+
+   
     
-    // else
-    // {
-    //     cout<<check->val<<endl;
-    // }
-    return result;
 
 }
 void print(ListNode* head)
@@ -68,25 +103,26 @@ ListNode* fourt=new ListNode();
     list1->next=first;
     first->val=3;
     first->next=second;
-    second->val=4;
+    second->val=5;
     second->next=third;
-    third->val=44;
+    third->val=3;
     third->next=last;
-    // fourth->val=44;
-    // fourth->next=last;
     last->val=1;
-    last->next=list2;
-     list2->val=3;
-     list2->next=fir;
-    fir->val=4;
-    fir->next=NULL;
+    last->next=NULL;
+    //  list2->val=3;
+    //  list2->next=fir;
+    // fir->val=1;
+    // fir->next=NULL;
     // seco->val=5;
     // seco->next=thi;
     // thi->val=5;
     // thi->next=fourt;
     // fourt->val=6;
     // fourt->next=NULL;
-    
-    ListNode* list11=isPalindrome(list1);
-    print(list11);
+    // print(list1);
+    // cout<<endl;
+    isPalindrome(list1);
+    // print(list11);
+    // cout<<endl;
+    // print(list1);
 }
