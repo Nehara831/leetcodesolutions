@@ -31,6 +31,18 @@ for(int i=0;i<count;i++){
 }
 return result;
 }
+TreeNode* sortedArrayToBST(vector<int>& nums,int start,int end) {
+    TreeNode* root= new TreeNode();
+    int middle=(start+end)/2;
+    root->data=nums[middle];
+    root->left=sortedArrayToBST(nums,start,middle-1);
+    root->right=sortedArrayToBST(nums,middle+1,end);
+
+
+
+
+        
+    }
 TreeNode* createNode(int data) {
     TreeNode* newNode = new TreeNode();
     newNode->data = data;
@@ -47,11 +59,11 @@ int main()
     //Level 3
      root->left->left = createNode(3);
      root->left->right = NULL;
-    // root->right->left = createNode(6);
-    // root->right->right = createNode(7);
-    // //Level 4
-    // root->left->right->left = createNode(9);
-    // root->right->right->left = createNode(15);
+    root->right->left = createNode(6);
+    root->right->right = createNode(7);
+    //Level 4
+    root->left->right->left = createNode(9);
+    root->right->right->left = createNode(15);
     root->left->left->left = createNode(9);
     root->left->left->right=NULL;
     root->left->left->left->left=createNode(10);
