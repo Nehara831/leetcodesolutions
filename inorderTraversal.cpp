@@ -2,6 +2,7 @@
 #include<string.h>
 #include<iostream>
 #include<vector>
+#include<stack>
 using namespace std;
 class TreeNode{
 public:
@@ -16,20 +17,51 @@ TreeNode* createNode(int data){
      root->right=NULL;
      return root;
 }
-vector<int> printNode(TreeNode* root,vector <int> nums){
-    if (root->left==NULL){
-        nums.push_back(root->data);
-        return ;
+int sum=0;
+int sumLeft=0;
+void sumNode(TreeNode* root) {
+    if (root== nullptr) {
+        cout<<sum<<endl;      
     }
-    if (root->right==NULL){
-        nums.push_back(root->data);
-        return nums;
+    else{
+    sum=sum+root->data;
+    sumLeft+=root->data;
+    sumNode(root->left);
+    if(root->left!=NULL){
+        //sum=sum-root->left->data;
     }
-    printNode(root->left,nums);
-    //cout<<root->data<< " ";
-    nums.push_back(root->data);
-    printNode(root->right,nums);
+    sum-=sumLeft;
+    sumLeft=0;
+    sumNode(root->right);
+    }
+    
+}
+int nums=0;
+int   printNode(TreeNode* root){
+    if (root==NULL){       
+        return 0;
+    }
+    //nums.push_back(root->data);     
+    nums=+ root->data; 
+    printNode(root->left) ;
+    printNode(root->right);
     return nums;
+}
+void pathSum(TreeNode* root){
+    stack <TreeNode*> stack1;
+    TreeNode* current=root;
+    int sum;
+    while(!(stack1.empty())|| root!=NULL){
+        while((current!=NULL)){
+            stack1.push(current);   
+            current=current->left;
+        }
+        current=stack1.top();
+        cout<<current->data;
+        stack1.pop();
+        current=current->right;
+        //root=current->right;       
+    }
 }
 int main()
 {
@@ -51,10 +83,9 @@ int main()
     root->left->left->left = createNode(4);
     root->left->left->right=createNode(12);
     root->right->left->right=createNode(44);
-    root->right->left->left=createNode(31);
-    vector<int > nums;
-    vector<int >nums2=printNode(root,nums);
-    for(int i=0;i<size(nums2);i++){
-        cout<<nums2[i]<<" ";
-    }
+    pathSum(root);
+    //cout<<printNode(root);
+    // for(int i=0;i<size(nums);i++){
+    //     cout<<nums[i]<<" ";
+    // }
 }
